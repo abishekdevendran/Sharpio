@@ -17,15 +17,13 @@ const Layout = ({ children }: { children: ReactNode }) => {
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
-					className="motionMain page"
+					className="motionMain page w-full h-full flex items-center justify-center overflow-hidden"
 					transition={{
 						type: 'spring',
 						stiffness: 100,
+						duration: 0.1,
 					}}
-					key={
-						// This is to ensure that page isn't unmounted when navigating between server pages
-						router.pathname.startsWith('/server') ? 'server' : router.asPath
-					}
+					key={router.asPath}
 				>
 					{children}
 				</motion.main>

@@ -2,10 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+* {
+	user-select: none;
+	transition-property: none;
+}
+serverBar::-webkit-scrollbar {
+	display: none;
+}
+html {
+	scroll-behavior: smooth;
+}
 body,
 #__next {
 	width: 100%;
-	height: 100%;
-  overflow: hidden;
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	background-color: hsl(var(--b1));
+	background-image: radial-gradient(hsl(var(--a)) 1.1px, transparent 1.1px),
+		radial-gradient(hsl(var(--a)) 1.1px, hsl(var(--b1)) 1.1px);
+	background-size: 44px 44px;
+	background-position: 0 0, 22px 22px;
 }

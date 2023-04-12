@@ -110,7 +110,7 @@ const Navbar = () => {
 							}}
 						>
 							<div className="w-10 rounded-full">
-								<Image src="defaultAvatar.png" alt="avatar" />
+								<Image src="/defaultAvatar.jpg" alt="avatar" fill className='rounded-full'/>
 							</div>
 						</div>
 						<ul
@@ -118,13 +118,7 @@ const Navbar = () => {
 							className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
 						>
 							<li className="justify-between">
-								<Link href="/dashboard">Profile</Link>
-							</li>
-							<li>
-								<a>Settings</a>
-							</li>
-							<li>
-								<Link href="/server/new">New Server</Link>
+								<Link href="/dashboard">Achievements</Link>
 							</li>
 							<li>
 								<LogoutButton />
