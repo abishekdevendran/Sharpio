@@ -10,7 +10,7 @@ export default function Home() {
 	else
 		return (
 			<Page title="Main">
-				<div className="card p-24 rounded-3xl drop-shadow-xl bg-base-200">
+				<div className="p-20 rounded-lg z-[2] glassy">
 					<div className="hero">
 						<div className="hero-content text-center">
 							<div className="max-w-md">
@@ -21,21 +21,31 @@ export default function Home() {
 									aut repudiandae et a id nisi.
 								</p>
 
-								{!user ? (
-									<Link
-										href="/login"
-										className="btn btn-primary hover:scale-110"
-									>
-										Login
-									</Link>
-								) : (
-									<Link
-										href="/game"
-										className="btn btn-primary hover:scale-110"
-									>
-										Continue solving
-									</Link>
-								)}
+								<div className="flex flex-row gap-4 justify-center items-center mt-8">
+									{!user ? (
+										<Link
+											href="/login"
+											className="btn btn-primary disabled:btn-disabled btn-md lg:btn-lg"
+										>
+											Login
+										</Link>
+									) : (
+										<Link
+											href="/game"
+											className="btn btn-primary disabled:btn-disabled btn-md lg:btn-lg"
+										>
+											Continue solving
+										</Link>
+									)}
+									{user?.isAdmin && (
+										<Link
+											href="/adminPanel"
+											className="btn btn-outline disabled:btn-disabled btn-md lg:btn-lg"
+										>
+											Go to Admin Panel
+										</Link>
+									)}
+								</div>
 							</div>
 						</div>
 					</div>

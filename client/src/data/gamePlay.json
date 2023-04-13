@@ -1,0 +1,229 @@
+{
+	"Start": {
+		"levelDescription": "You wake up in the middle of shrubbery. You notice three notable items on the ground: a sword, a shield, and a helmet. You pick up: ",
+		"possibleAnswers": ["Sword", "Shield", "Helmet"],
+		"sword": {
+			"levelDescription": "You pick up the sword. You notice a small hole in the blade. You decide to ignore it. You continue on your journey.",
+			"possibleAnswers": ["Continue"],
+			"continue": {
+				"levelDescription": "You continue on your journey. You come across a river. You notice a village boat on the other side. You decide to: ",
+				"possibleAnswers": ["Cross", "Wait"],
+				"cross": [
+					{
+						"levelDescription": "The river is too deep to cross. You drown.",
+						"end": false
+					},
+					{
+						"levelDescription": "Crocodiles attack you. You die.",
+						"end": false
+					},
+					{
+						"levelDescription": "You have too much fun in the river and forget about your journey. You die old. The real treasure was the friends you made along the way. :) (Really though, you lose.)",
+						"end": false,
+						"achievement": "Maybe the One Piece is friendship."
+					}
+				],
+				"wait": {
+					"levelDescription": "Your knees give out from waiting too long. You sit down and notice something shiny buried underneath where you were just standing.",
+					"possibleAnswers": [
+						"Go home with single gold coin",
+						"Dig",
+						"Keep Waiting"
+					],
+					"go home with single gold coin": {
+						"levelDescription": "A content and fulfilled heart is the greatest treasure of them all. You win.",
+						"end": true,
+						"achievement": "Sheesh what a man, couldn't be me."
+					},
+					"dig": {
+						"levelDescription": "You dig a deep hole with your sword and destroy it in the process. Now you're trapped in a 6 feet hole with no equipment.",
+						"possibleAnswers": ["wait"],
+						"wait": {
+							"levelDescription": "you wait....",
+							"possibleAnswers": ["wait"],
+							"wait": {
+								"levelDescription": "you wait....",
+								"possibleAnswers": ["wait"],
+								"wait": {
+									"levelDescription": "you wait....",
+									"possibleAnswers": ["wait"],
+									"wait": {
+										"levelDescription": "You die of starvation. Idk man I'm sorry.",
+										"end": false,
+										"achievement": "Give up on your dreams and die."
+									}
+								}
+							}
+						}
+					},
+					"keep waiting":{
+						"levelDescription": "A ferryman comes around. What do you do?",
+						"possibleAnswers": ["Do Nothing", "Get on"],
+						"do nothing": {
+							"levelDescription": "Your introverted being dies alone waiting for all the right oppurtunites just to let them all slip. No amount of heavenly interference or sheer dumb luck could help you. You do nothing at all and live. Your life is a testament to your failures.",
+							"end":false,
+							"achievement": "Eat 5 star, ..."
+						},
+						"get on": {
+							"levelDescription": "Now What?",
+							"possibleAnswers": ["Go with the flow", "Ask to get off at Coimbatore", "Rob the ferryman"],
+							"go with the flow": {
+								"levelDescription": "You enjoy the ride. Weee. Wait, what.",
+								"end":false,
+								"achievement": "Weeeee"
+							},
+							"ask to get off at coimbatore": {
+								"levelDescription": "The ferryman declines.",
+								"end": false,
+								"achievement": "Oh, okay.👍"
+							},
+							"rob the ferryman":[
+								{
+									"levelDescription": "You beat up the old ferryman to find basically nothing on his person. With no experience manning a boat, the current violently sweeps you to your impending inevitable death.",
+									"end": false,
+									"achievement": "Kindness paid in kind."
+								},
+								{
+									"levelDescription": "You threaten the old man, .., but, you didn't realize he was ripped all along! He beats you to a pulp with ease and tosses you into the river. You find a disfigured chunk of gold in the riverbed. You don't live long enough to realize that it's fool's gold.",
+									"end": false,
+									"achievement": "Illusioned to the end."
+								}
+							]
+						}
+					}
+				}
+			}
+		},
+		"shield": {
+			"levelDescription": "You pick up the shield. You notice a small hole in the shield. You decide to ignore it. You continue on your journey.",
+			"possibleAnswers": ["Continue"],
+			"continue": {
+				"levelDescription": "You encounter a dragon. You decide to: ",
+				"possibleAnswers": ["Fight", "Run"],
+				"fight": [
+					{
+						"levelDescription": "The Dragon is too strong. You die.",
+						"end": false
+					},
+					{
+						"levelDescription": "The Dragon thinks you're funny for even trying and shares some of his treasure with you. You win!",
+						"end": true,
+						"achievement": "You're a real treasure."
+					},
+					{
+						"levelDescription": "Your shield withstands the Dragons' attack, so you manage to kill it. But the dragon's lair is empty. The last DragonSlayer took all the treasure :(. You give up out of frustration.",
+						"achievement": "Just me and my mighty shield."
+					}
+				],
+				"run": [
+					{
+						"levelDescription": "You run away from the dragon. You run so hard that you die from exhaustion. You lose.",
+						"end": false
+					},
+					{
+						"levelDescription": "You slow down and recollect yourself. The battle has left the hole in your shield bigger. You decide to ignore it. You continue on your journey.",
+						"possibleAnswers": ["Continue"],
+						"continue": [
+							{
+								"levelDescription": "You wander to the far east and meet Goblins, what do you do?",
+								"possibleAnswers": ["Fight", "Run", "Talk", "Give"],
+								"fight": [
+									{
+										"levelDescription": "You fight the goblins and die.",
+										"end": false
+									},
+									{
+										"levelDescription": "You fight the goblins and win. That was easy wasn't it? Guess Shield bonks do work afterall. You loot all their belongings and become rich. You win.",
+										"end": true,
+										"achievement": "May the better Goblin win."
+									}
+								],
+								"run": [
+									{
+										"levelDescription": "You run away from the goblins, but the goblins figure out your fear and kill you for their next meal.",
+										"end": false
+									},
+									{
+										"levelDescription": "You run away from the goblins, the goblins get curious and start following you. You keep running never to stop, your never-ending marathon attracting a lot of attention. You make a fortune from all the promotion.",
+										"end": true,
+										"achievement": "I have won, but at what cost?"
+									}
+								],
+								"talk": [
+									{
+										"levelDescription": "You do not know GoblinSpeak, accidentally cuss, get cancelled on Goblin Twitter and go broke fromt he defamation lawsuit. You contemplate life and what choices led to this end for you. You lose.",
+										"end": false,
+										"achievement": "Caught a case"
+									}
+								],
+								"give": [
+									{
+										"levelDescription": "You give your shield to the goblins. They are so awestruck at your selflessness. That's all. What did you expect? True kindness expects nothing in return. Right? Right? Right?",
+										"possibleAnswers": ["Continue"],
+										"continue": {
+											"levelDescription": "You have a whole slew of possibilities, but I'm getting tired of writing this. You win.",
+											"end": true,
+											"achievement": "Nerf this player please."
+										}
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+		},
+		"helmet": {
+			"levelDescription": "You head north to the Himalayas...",
+			"possibleAnswers": ["continue"],
+			"continue": {
+				"levelDescription": "The mountains are too steep for you, what do you do?",
+				"possibleAnswers": [
+					"Dig for gold",
+					"Fight whatever moves",
+					"Contemplate Life"
+				],
+				"contemplate life": {
+					"levelDescription": "Now you have a lot of time to think. What do you think about?",
+					"possibleAnswers": [
+						"JEE/NEET marks",
+						"The Present",
+						"Nothing at all"
+					],
+					"jee/neet marks": {
+						"levelDescription": "Stop doing this to yourself. Get some help.",
+						"end": false,
+						"achievement": "Forcefully retired"
+					},
+					"the present": {
+						"levelDescription": "The wind is cold. The mountains are serene and beautiful. The skies are gloomy but it is what it is. The ground is red. The river is, wait a second, the ground is red? Contemplating more on your present, you finally let the adrenaline pulse out and realize how you woke up in the first place. The bitter cold numbs your pain as your life slowly gives out from the sheer amount of blood you've lost since you woke up injured.",
+						"end": false,
+						"achievement": "Agony Nullified"
+					},
+					"nothing at all":{
+						"levelDescription": "You realize it is harder to not hink than think. It is even harder to not think about not thinking than to think. You realize the irony of life, go home a little wiser, sought out the company of loved ones and live a contentful life.",
+						"end": true,
+						"achievement": "To be or not to be"
+					}
+				},
+				"fight whatever moves":{
+					"levelDescription": "It's way too cold. The bears are hibernating. The wolves are resting. Your bloodlust exhausts you, and you die of a cardiac arrest.",
+					"end": false,
+					"achievement": "No chill pills for me"
+				},
+				"dig for gold":[
+					{
+						"levelDescription": "Would you look at that, you did find gold afterall. Why does the helmet matter you ask? It doesn't. This ain't a complex cinematic universe for everything to come together for a grand reveal. Get home with the gold man, less questions, more digging.",
+						"end": true,
+						"achievement": "But, but the background is a JoJo reference 🤓"
+					},
+					{
+						"levelDescription": "You keep digging to find nothing. The cold and exhaustion kill you.",
+						"end": false,
+						"achievement": "No rest for the wicked"
+					}
+				]
+			}
+		}
+	}
+}

@@ -10,18 +10,17 @@ const Layout = ({ children }: { children: ReactNode }) => {
 			<Navbar />
 			<AnimatePresence
 				initial={false}
-				mode="wait"
+				mode="popLayout"
 				onExitComplete={() => window.scrollTo(0, 0)}
 			>
 				<motion.main
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
+					initial={{ x: '-100%' }}
+					animate={{ x: 0 }}
+					exit={{ x: '100%' }}
 					className="motionMain page w-full h-full flex items-center justify-center overflow-hidden"
 					transition={{
 						type: 'spring',
-						stiffness: 100,
-						duration: 0.1,
+						duration: 0.5,
 					}}
 					key={router.asPath}
 				>

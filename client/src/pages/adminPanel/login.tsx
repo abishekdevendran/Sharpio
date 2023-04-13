@@ -1,34 +1,32 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { loginFormSchema, loginFormSchemaType } from '@/schemas/loginSchema';
-import { toast } from 'react-hot-toast';
-import CryptoJS from 'crypto-js';
-import { useRouter } from 'next/router';
-import UserContext from '@/contexts/UserContext';
 import LoadingPage from '@/components/LoadingPage';
 import Page from '@/components/Page';
+import UserContext from '@/contexts/UserContext';
+import { loginFormSchema, loginFormSchemaType } from '@/schemas/loginSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import Router, { useRouter } from 'next/router';
+import React, { useContext, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import CryptoJS from 'crypto-js';
 
-const Login = () => {
+const AdminLogin = () => {
 	const secretKey = process.env.NEXT_PUBLIC_COUPLING_SECRET;
 	const [interactive, setInteractive] = useState(true);
 	const { mutate, user, isLoading } = useContext(UserContext);
 	const router = useRouter();
 	const { query, isReady } = router;
-
 	useEffect(() => {
 		if (isReady) {
-			if (user) {
+			if (user && user.isAdmin) {
 				if (query.redirect) {
-					console.log(query.redirect);
+					// console.log(query.redirect);
 					router.push(query.redirect as string);
 					return;
 				}
-				router.push('/game');
+				router.push('/adminPanel');
 			}
 		}
 	}, [user, isReady, query, router]);
-
 	const {
 		register,
 		handleSubmit,
@@ -74,7 +72,7 @@ const Login = () => {
 	if (isLoading) return <LoadingPage />;
 	return (
 		<Page title="Login">
-			<div className="card glassy lg:card-side bg-base-300 shadow-xl flex items-center justify-center p-10">
+			<div className="card lg:card-side bg-base-300 shadow-xl flex items-center justify-center">
 				<h2 className="lg:-rotate-90 card-title  text-7xl lg:text-8xl lg:-mx-12 font-extrabold mt-8 lg:opacity-75 lg:mb-6 pointer-events-none">
 					Login
 				</h2>
@@ -111,7 +109,7 @@ const Login = () => {
 								<button
 									type="reset"
 									className="btn btn-outline disabled:btn-disabled btn-md lg:btn-lg"
-									onClick={() => router.push('/register')}
+									onClick={() => Router.push('/register')}
 								>
 									Register
 								</button>
@@ -124,4 +122,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default AdminLogin;

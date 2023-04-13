@@ -16,4 +16,5 @@ model User {
   password   String
   username      String @unique
   achievements String[]
+  isAdmin   Boolean @default(false)
 }
