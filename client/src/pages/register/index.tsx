@@ -2,84 +2,82 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-	loginFormSchema,
-	loginFormSchemaType,
-} from '../../schemas/loginSchema';
+	registerFormSchema,
+	registerFormSchemaType,
+} from '@/schemas/registerSchema';
 import { toast } from 'react-hot-toast';
 import CryptoJS from 'crypto-js';
 import { useRouter } from 'next/router';
-import UserContext from '../../contexts/UserContext';
-import LoadingPage from '../../components/LoadingPage';
-import Page from '../../components/Page';
+import Head from 'next/head';
+import UserContext from '@/contexts/UserContext';
+import LoadingPage from '@/components/LoadingPage';
 
-const Login = () => {
+const Register = () => {
 	const secretKey = process.env.NEXT_PUBLIC_COUPLING_SECRET;
 	const [interactive, setInteractive] = useState(true);
 	const { mutate, user, isLoading } = useContext(UserContext);
 	const router = useRouter();
-	const { query, isReady } = router;
 
 	useEffect(() => {
-		if (isReady) {
-			if (user) {
-				if (query.redirect) {
-					console.log(query.redirect);
-					router.push(query.redirect as string);
-					return;
-				}
-				router.push('/game');
-			}
+		if (user) {
+			router.push('/dashboard');
 		}
-	}, [user, isReady, query, router]);
+	}, [user, router]);
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<loginFormSchemaType>({
-		resolver: zodResolver(loginFormSchema),
+	} = useForm<registerFormSchemaType>({
+		resolver: zodResolver(registerFormSchema),
 	});
 
-	const submitHandler = async (data: loginFormSchemaType) => {
+	const submitHandler = async (data: registerFormSchemaType) => {
 		setInteractive(false);
-		console.log(data);
+		//check if passwords match
+		if (data.password !== data.confirmPassword) {
+			toast.error('Passwords do not match');
+			setInteractive(true);
+			return;
+		}
+		//drop confirmPassword
+		delete data.confirmPassword;
 		//encrypt password
 		data.password = CryptoJS.AES.encrypt(data.password, secretKey!).toString();
 		try {
-			const response = await fetch('/api/login', {
+			const response = await fetch('/api/register', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify(data),
 			});
+			console.log(response);
+			const result = await response.json();
 			if (!response.ok) {
-				if (response.status === 500) {
-					toast.error(
-						'Server temporarily unavailable. Please try again later.'
-					);
-					setInteractive(true);
-					return;
-				}
-				const result = await response.json();
-				console.error(result);
 				toast.error(result.message);
-				setInteractive(true);
 			} else {
-				toast.success('Login successful. Redirecting...');
+				toast.success('Registartion successful. Redirecting...');
 				mutate();
+				router.push('/game');
 			}
+			console.log(result);
 		} catch (error) {
 			console.error(error);
-			setInteractive(true);
 		}
+		setInteractive(true);
 	};
 	if (isLoading) return <LoadingPage />;
 	return (
-		<Page title="Login">
-			<div className="card lg:card-side bg-base-300 shadow-xl flex items-center justify-center">
-				<h2 className="lg:-rotate-90 card-title  text-7xl lg:text-8xl lg:-mx-12 font-extrabold mt-8 lg:opacity-75 lg:mb-6 pointer-events-none">
-					Login
+		<>
+			<Head>
+				<title>Strife Register</title>
+				<meta name="description" content="Strife Register" />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+			</Head>
+			<div className="card lg:card-side bg-base-300 shadow-xl flex items-center justify-center mt-20">
+				<h2 className="lg:-rotate-90 card-title  text-7xl lg:text-8xl lg:-mx-20 font-extrabold mt-8 lg:opacity-75 lg:mb-6 pointer-events-none">
+					Register
 				</h2>
 				<div className="card-body w-96 flex items-center pb-12 px-8">
 					<form
@@ -100,10 +98,24 @@ const Login = () => {
 							<p className="label text-lg mt-4">Password:</p>
 							<input
 								{...register('password')}
-								type="password"
+								type="text"
 								className="input w-full"
 							/>
 							<p>{errors.password?.message}</p>
+							<p className="label text-lg mt-4">Confirm Password:</p>
+							<input
+								{...register('confirmPassword')}
+								type="password"
+								className="input w-full"
+							/>
+							<p>{errors.confirmPassword?.message}</p>
+							<p className="label text-lg mt-4">Email:</p>
+							<input
+								{...register('email')}
+								type="email"
+								className="input w-full"
+							/>
+							<p>{errors.email?.message}</p>
 							<span className="w-full grid grid-cols-2 gap-x-4 mt-4">
 								<button
 									type="submit"
@@ -114,17 +126,17 @@ const Login = () => {
 								<button
 									type="reset"
 									className="btn btn-outline disabled:btn-disabled btn-md lg:btn-lg"
-									onClick={() => router.push('/register')}
+									onClick={() => router.push('/login')}
 								>
-									Register
+									Login
 								</button>
 							</span>
 						</fieldset>
 					</form>
 				</div>
 			</div>
-		</Page>
+		</>
 	);
 };
 
-export default Login;
+export default Register;
