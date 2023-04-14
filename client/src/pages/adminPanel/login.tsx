@@ -17,9 +17,8 @@ const AdminLogin = () => {
 	const { query, isReady } = router;
 	useEffect(() => {
 		if (isReady) {
-			if (user && user.isAdmin) {
+			if (user) {
 				if (query.redirect) {
-					// console.log(query.redirect);
 					router.push(query.redirect as string);
 					return;
 				}

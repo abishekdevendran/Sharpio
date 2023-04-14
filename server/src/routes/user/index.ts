@@ -4,7 +4,8 @@ import userController from '@/controllers/userController';
 const router = express.Router();
 
 router.get('/logout', isAuth, userController.logout);
-router.get('/newAchievement', isAuth, userController.newAchievement);
+router.post('/newAchievement', isAuth, userController.newAchievement);
+router.get('/achievements', isAuth, userController.getAchievements);
 router.get('/', userController.data);
 
 export default router;

@@ -10,18 +10,16 @@ export default function Home() {
 	else
 		return (
 			<Page title="Main">
-				<div className="p-20 rounded-lg z-[2] glassy">
+				<div className="p-10 rounded-lg z-[2] glassy mx-8">
 					<div className="hero">
 						<div className="hero-content text-center">
-							<div className="max-w-md">
+							<div className="max-w-xl">
 								<h1 className="text-5xl font-bold">Hello there</h1>
-								<p className="py-6">
-									Provident cupiditate voluptatem et in. Quaerat fugiat ut
-									assumenda excepturi exercitationem quasi. In deleniti eaque
-									aut repudiandae et a id nisi.
+								<p className="py-6 text-justify">
+									{`Welcome to this text-based virtual adventure. You will be put in situations (sometimes purely randomly), with a timer going off. Be quick on your feet and make the right decisions. Unlike the traditional treasure hunt, the "treasure" here is ultimately up to your interpretation (and mine, the gameMaster's :P). As long as you're making progress, you're winning!.`}
 								</p>
-
-								<div className="flex flex-row gap-4 justify-center items-center mt-8">
+								<p className="py-6 text-center">{`The theme for the game is "Progress. Good Luck!"`}</p>
+								<div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
 									{!user ? (
 										<Link
 											href="/login"

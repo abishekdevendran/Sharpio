@@ -75,7 +75,7 @@ const Navbar = () => {
 		}
 	}, [isOpen]);
 	return (
-		<div className="navbar glassy fixed z-[2] top-0 left-0 bg-base-300 px-8 rounded-full mt-2">
+		<div className="navbar glassy fixed z-[2] top-0 left-0 right-0 mx-auto w-[98%] bg-base-300 px-8 rounded-full mt-2">
 			<div className="flex-1 -ml-2">
 				<Link className="btn btn-ghost normal-case" href={'/'}>
 					<h1 className="text-4xl font-black tracking-tight">Sharpio</h1>
@@ -93,7 +93,7 @@ const Navbar = () => {
 					)}
 				</div>
 				{user && (
-					<div className="dropdown dropdown-end ml-4" ref={themeMenu}>
+					<div className="dropdown dropdown-end ml-4 hover:scale-105" ref={themeMenu}>
 						<div
 							tabIndex={0}
 							className="btn btn-ghost btn-circle avatar select-none"
@@ -119,6 +119,9 @@ const Navbar = () => {
 						>
 							<li className="justify-between">
 								<Link href="/dashboard">Achievements</Link>
+							</li>
+							<li className="justify-between">
+								<Link href="/">Home</Link>
 							</li>
 							<li>
 								<LogoutButton />

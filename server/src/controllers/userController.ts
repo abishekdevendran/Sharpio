@@ -21,36 +21,65 @@ export function userDataController(req: Request, res: Response) {
 	}
 }
 
-export async function userAchievementController(req: Request, res: Response){
-	const {newAchievement} = req.body;
+export async function userAchievementController(req: Request, res: Response) {
+	const { achievement:newAchievement } = req.body;
+	console.log('Body: ', req.body);
+	console.log('New achievement: ', newAchievement);
 	// get all achievements of user
-	const achievements = await prisma.user.findUnique({
-		where:{
-			username: req.session.user?.username
-		}
-	}).then((user)=>user?.achievements);
-	// check if achievement already exists
-	if(achievements?.findIndex(newAchievement)!==-1){
-		res.status(401).send("Achievement already exists");
-	}
-	else{
-		// add new achievement to user
-		await prisma.user.update({
-			where:{
-				username: req.session.user?.username
+	let achievements = await prisma.user
+		.findUnique({
+			where: {
+				username: req.session.user?.username,
 			},
-			data:{
-				achievements:{
-					push: newAchievement
-				}
-			}
-		});
-		res.status(200).send("Achievement added");
+		})
+		.then((user) => user?.achievements);
+	if (!achievements || !achievements.includes(newAchievement)) {
+		// update user
+		try {
+			await prisma.user.update({
+				where: {
+					username: req.session.user?.username,
+				},
+				data: {
+					achievements: {
+						push: newAchievement,
+					},
+				},
+			});
+		} catch (e) {
+			console.log(e);
+		}
+		//update session
+		if(req.session.user?.achievements){
+			req.session.user.achievements.push(newAchievement);
+		}
+		else{
+			req.session.user!.achievements = [newAchievement];
+		}
+		return res.status(200).send({ message: 'Achievement added' });
 	}
+	return res.status(200).send({ message: 'Achievement already exists' });
+}
+
+export async function userAchievementGetter(req: Request, res: Response) {
+	const { username } = req.session.user!;
+	console.log('Username: ', username);
+	const achievements = await prisma.user
+		.findUnique({
+			where: {
+				username,
+			},
+		})
+		.then((user) => user?.achievements);
+	if (achievements) {
+		return res.status(200).send({ achievements });
+	}
+	return res.status(200).send({ message: 'No achievements' });
 }
 
 export default {
 	logout: userLogoutController,
 	data: userDataController,
-	newAchievement: userAchievementController
+	newAchievement: userAchievementController,
+	getAchievements: userAchievementGetter,
 };

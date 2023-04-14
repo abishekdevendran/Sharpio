@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import React, { ComponentPropsWithoutRef, useMemo } from 'react';
+import React, { ComponentPropsWithoutRef, useEffect, useMemo } from 'react';
 import Countdown from 'react-countdown';
 
 interface IGameBoardProps extends ComponentPropsWithoutRef<'div'> {
@@ -11,6 +11,8 @@ interface IGameBoardProps extends ComponentPropsWithoutRef<'div'> {
 	possibleAnswers: string[];
 	difficultyMultiplier: number;
 	setAnswer: (answer: string) => void;
+	idx: number;
+	lazyAchievement: () => void;
 	reset: () => void;
 }
 
@@ -23,6 +25,8 @@ const GameBoard = ({
 	possibleAnswers,
 	difficultyMultiplier,
 	setAnswer,
+	idx,
+	lazyAchievement,
 	reset,
 	...props
 }: IGameBoardProps) => {
@@ -30,6 +34,9 @@ const GameBoard = ({
 	const [interactable, setinteractable] = React.useState<boolean>(false);
 	const [hasEnded, setHasEnded] = React.useState<boolean>(false);
 	const countdownRef = React.useRef<any>(null);
+	const submitButtonRef = React.useRef<HTMLButtonElement>(null);
+	const startButtonRef = React.useRef<HTMLButtonElement>(null);
+	const [isLazy, setIsLazy] = React.useState<boolean>(true);
 	const calcTime = useMemo(
 		() => Date.now() + time * 1000 * difficultyMultiplier,
 		[time, difficultyMultiplier, level]
@@ -37,12 +44,32 @@ const GameBoard = ({
 	function selectRandomAnswer() {
 		if (!possibleAnswers) return;
 		const randomIndex = Math.floor(Math.random() * possibleAnswers.length);
+		if (randomIndex !== idx) {
+			setIsLazy(false);
+		}
 		setSelectedAnswer(possibleAnswers[randomIndex]);
 	}
 	if (!possibleAnswers && !hasEnded) {
 		setHasEnded(true);
 		setinteractable(true);
+		if (isLazy && level > 4) {
+			lazyAchievement();
+		}
 	}
+	useEffect(() => {
+		//focus on submit button
+		if (interactable && submitButtonRef.current) {
+			// console.log('focused submit');
+			submitButtonRef.current.focus();
+		}
+	}, [setinteractable, interactable]);
+
+	useEffect(() => {
+		if (!interactable && !hasEnded && startButtonRef.current) {
+			// console.log('focused start');
+			startButtonRef.current?.focus();
+		}
+	}, [interactable, hasEnded]);
 	return (
 		<div
 			{...props}
@@ -136,6 +163,7 @@ const GameBoard = ({
 							selectRandomAnswer();
 							countdownRef.current.start();
 						}}
+						ref={startButtonRef}
 					>
 						Start
 					</button>
@@ -150,6 +178,7 @@ const GameBoard = ({
 							setAnswer(selectedAnswer);
 						}}
 						disabled={!selectedAnswer}
+						ref={submitButtonRef}
 					>
 						Submit
 					</button>
