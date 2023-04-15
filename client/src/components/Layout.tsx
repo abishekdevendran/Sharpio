@@ -17,7 +17,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
 					initial={{ x: '-100%' }}
 					animate={{ x: 0 }}
 					exit={{ x: '100%' }}
-					className="motionMain page w-full min-h-full flex items-center justify-center overflow-hidden"
+					className="motionMain page w-full min-h-screen flex items-center justify-center overflow-hidden"
 					transition={{
 						type: 'spring',
 						duration: 0.5,

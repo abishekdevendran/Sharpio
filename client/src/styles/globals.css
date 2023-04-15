@@ -21,6 +21,7 @@ body,
 		radial-gradient(hsl(var(--a)) 1.1px, hsl(var(--b1)) 1.1px);
 	background-size: 44px 44px;
 	background-position: 0 0, 22px 22px;
+	position: absolute;
 }
 .glassy {
 	background: rgba(255, 255, 255, 0.1);

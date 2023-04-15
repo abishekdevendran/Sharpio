@@ -73,19 +73,19 @@ const GameBoard = ({
 	return (
 		<div
 			{...props}
-			className={`card glassy flex items-center justify-center select-none w-5/6 p-12 relative ${
+			className={`card relative glassy flex items-center justify-center select-none mx-auto w-[98%] p-12 mt-24 h-[85vh] ${
 				className ? className : ''
 			}`}
 		>
 			<div
-				className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-7xl md:text-9xl ${
+				className={`z-[2] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-7xl md:text-9xl ${
 					interactable ? 'hidden' : ''
 				}`}
 			>
 				Ready?
 			</div>
 			<div
-				className={`gameContent w-full flex flex-col items-center justify-center text-center  ${
+				className={`gameContent glassy rounded-xl w-full flex flex-col items-center justify-center text-center  ${
 					!interactable ? 'blur-lg' : ''
 				} ${!interactable ? 'pointer-events-none' : ''}`}
 			>
@@ -153,10 +153,10 @@ const GameBoard = ({
 					</div>
 				</form>
 			</div>
-			<div>
+			<div className='buttonsDiv absolute bottom-8 left-0 right-0 flex items-center justify-center'>
 				{!interactable && !hasEnded && (
 					<button
-						className="btn btn-primary"
+						className="btn btn-primary mt-8"
 						onClick={(e) => {
 							e.preventDefault();
 							setinteractable(true);
@@ -170,7 +170,7 @@ const GameBoard = ({
 				)}
 				{interactable && !hasEnded && (
 					<button
-						className="btn btn-primary disabled:btn-disabled"
+						className="btn btn-primary disabled:btn-disabled mt-8"
 						onClick={(e) => {
 							e.preventDefault();
 							setinteractable(false);
@@ -185,7 +185,7 @@ const GameBoard = ({
 				)}
 				{hasEnded && (
 					<button
-						className="btn btn-primary"
+						className="btn btn-primary mt-8"
 						onClick={(e) => {
 							e.preventDefault();
 							setinteractable(false);

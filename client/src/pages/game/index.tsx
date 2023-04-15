@@ -28,7 +28,10 @@ const Game = () => {
 		try {
 			const result = await postAchievement(achievement);
 			if (result.message === 'Achievement added') {
-				toast.success(`Achievement Unlocked: ${achievement}`);
+				toast.success(`Achievement Unlocked: ${achievement}`, {
+					icon: '🎉',
+					duration: 10000,
+				});
 				//update local user
 				await mutate();
 			}

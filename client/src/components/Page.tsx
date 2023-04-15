@@ -15,7 +15,7 @@ const Page = ({
 	return (
 		<div
 			{...props}
-			className={`Page w-full min-h-full flex items-center justify-center select-none ${
+			className={`Page relative w-full min-h-screen h-full select-none ${
 				className ? className : ''
 			}`}
 		>
