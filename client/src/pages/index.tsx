@@ -10,7 +10,7 @@ export default function Home() {
 	else
 		return (
 			<Page title="Main">
-				<div className="p-10 rounded-lg z-[2] glassy mx-4 md:mx-8 mt-32 md:mt-0">
+				<div className="rounded-lg z-[2] glassy w-11/12 sm:w-5/6 mx-auto mt-52 md:mt-64">
 					<div className="hero">
 						<div className="hero-content text-center">
 							<div className="max-w-xl">

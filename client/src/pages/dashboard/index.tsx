@@ -1,4 +1,5 @@
 import LoadingPage from '@/components/LoadingPage';
+import WithAuth from '@/components/WithAuth';
 import useUser from '@/hooks/useUser';
 
 const Achievements = () => {
@@ -11,11 +12,16 @@ const Achievements = () => {
 			<h1 className="text-4xl font-bold text-center mb-8">Achievements</h1>
 			<ul>
 				{user.achievements.map((achievement) => (
-					<li key={achievement} className='glassy p-4 rounded-full my-2 text-center hover:scale-105'>{achievement}</li>
+					<li
+						key={achievement}
+						className="glassy p-4 rounded-full my-2 text-center hover:scale-105"
+					>
+						{achievement}
+					</li>
 				))}
 			</ul>
 		</div>
 	);
 };
 
-export default Achievements;
+export default WithAuth(Achievements);

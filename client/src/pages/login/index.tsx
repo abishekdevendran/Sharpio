@@ -74,7 +74,7 @@ const Login = () => {
 	if (isLoading) return <LoadingPage />;
 	return (
 		<Page title="Login">
-			<div className="card glassy lg:card-side bg-base-300 shadow-xl flex items-center justify-center p-10">
+			<div className="card glassy lg:card-side bg-base-300 shadow-xl flex items-center justify-center p-10 w-11/12 sm:w-5/6 md:w-1/2 mx-auto mt-48">
 				<h2 className="lg:-rotate-90 card-title  text-7xl lg:text-8xl lg:-mx-12 font-extrabold mt-8 lg:opacity-75 lg:mb-6 pointer-events-none">
 					Login
 				</h2>

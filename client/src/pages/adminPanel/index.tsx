@@ -109,8 +109,6 @@ const AdminPanel = () => {
 				if (!user.isAdmin) {
 					achievementHandler();
 					Router.push('/game');
-				} else {
-					// statsFetcher();
 				}
 			}
 		}
