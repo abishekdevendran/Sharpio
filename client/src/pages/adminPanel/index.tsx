@@ -12,8 +12,9 @@ import {
 	CartesianGrid,
 	Tooltip,
 	Legend,
-	ResponsiveContainer
+	ResponsiveContainer,
 } from 'recharts';
+import UserStats from '@/components/UserStats';
 
 const AdminPanel = () => {
 	const { mutate, user, isLoading } = useContext(UserContext);
@@ -113,31 +114,33 @@ const AdminPanel = () => {
 			}
 		}
 	}, [user, isReady, mutate]);
-	if (isLoading) return <LoadingPage />;
+	if (isLoading || !isReady || isStatsLoading) return <LoadingPage />;
 	return (
 		<Page title="Admin Panel">
-			<div className="glassy w-[98%] flex flex-col gap-2 p-4 items-center justify-center mt-20 mb-8 rounded-3xl">
+			<div className="glassy w-[98%] flex flex-col gap-2 p-4 items-center justify-center mt-20 mb-8 rounded-3xl mx-auto">
 				<h1 className="text-4xl font-bold text-center">Admin Panel</h1>
 				<div className="w-full flex-grow flex flex-col items-center justify-center gap-2 p-4 glassy z-[4] rounded-3xl">
 					<div className="barContainer w-full flex-grow flex items-center justify-center gap-2 p-4 glassy z-[4] rounded-3xl h-full">
-						<ResponsiveContainer width="100%" height={500}>
-							<BarChart data={data}>
-								<CartesianGrid strokeDasharray="3 3" />
-								<Legend />
-								<XAxis
-									dataKey="name"
-									style={{
-										fontSize: '0.8rem',
-									}}
-								/>
-								<Tooltip />
-								<Bar dataKey="value" fill="rgba(136, 132, 216, 0.7)" />
-							</BarChart>
-						</ResponsiveContainer>
+						{isStatsLoading ? (
+							'Loading...'
+						) : (
+							<ResponsiveContainer width="100%" height={500}>
+								<BarChart data={data}>
+									<CartesianGrid strokeDasharray="3 3" />
+									<Legend />
+									<XAxis
+										dataKey="name"
+										style={{
+											fontSize: '0.8rem',
+										}}
+									/>
+									<Tooltip />
+									<Bar dataKey="value" fill="rgba(136, 132, 216, 0.7)" />
+								</BarChart>
+							</ResponsiveContainer>
+						)}
 					</div>
-					<div className="w-1/4 flex-grow flex items-center justify-center gap-2 p-4 glassy z-[4] rounded-3xl h-full">
-						{isStatsLoading ? 'Loading...' : JSON.stringify(data)}
-					</div>
+					<UserStats />
 				</div>
 			</div>
 		</Page>

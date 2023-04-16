@@ -48,6 +48,7 @@ export async function userAchievementController(req: Request, res: Response) {
 			});
 		} catch (e) {
 			console.log(e);
+			return res.status(500).send({ message: 'Error adding achievement' });
 		}
 		//update session
 		if(req.session.user?.achievements){

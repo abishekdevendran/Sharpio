@@ -53,6 +53,7 @@ const GameBoard = ({
 		setHasEnded(true);
 		setinteractable(true);
 		if (isLazy && level > 4) {
+			setIsLazy(false);
 			lazyAchievement();
 		}
 	}

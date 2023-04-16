@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import prisma from '@/databases/postgresPrisma';
 
-export default async function statsController(req: Request, res: Response) {
+export async function statsController(req: Request, res: Response) {
 	//send aggregate stats
 	// defining types of achievements
 	// list of all achievements
@@ -185,3 +185,29 @@ export default async function statsController(req: Request, res: Response) {
 		return res.status(500).json({ message: 'Internal server error' });
 	}
 }
+
+export async function getMatchingUsers(req: Request, res: Response) {
+	const { username } = req.body;
+	console.log(req.body);
+	if (typeof username !== 'string')
+		return res.status(400).json({ message: 'Invalid username' });
+	try {
+		const users = await prisma.user.findMany({
+			where: {
+				username: {
+					contains: username,
+					mode: 'insensitive',
+				},
+			},
+		});
+		return res.status(200).json({ data: users });
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ message: 'Internal server error' });
+	}
+}
+
+export default {
+	statsHandler: statsController,
+	matchingUsersHandler: getMatchingUsers,
+};

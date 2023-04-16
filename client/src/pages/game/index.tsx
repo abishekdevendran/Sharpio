@@ -40,7 +40,7 @@ const Game = () => {
 		}
 	}
 	async function giveLazyAchievement() {
-		if (user?.achievements.length === achCount - 1) {
+		if (user?.achievements.length === achCount - 4) {
 			handleAchievement('All Star');
 		}
 		handleAchievement('Too bored to be productive; Too tired to be lazy');
