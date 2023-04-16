@@ -22,7 +22,7 @@ export function userDataController(req: Request, res: Response) {
 }
 
 export async function userAchievementController(req: Request, res: Response) {
-	const { achievement:newAchievement } = req.body;
+	const { achievement: newAchievement } = req.body;
 	console.log('Body: ', req.body);
 	console.log('New achievement: ', newAchievement);
 	// get all achievements of user
@@ -51,10 +51,9 @@ export async function userAchievementController(req: Request, res: Response) {
 			return res.status(500).send({ message: 'Error adding achievement' });
 		}
 		//update session
-		if(req.session.user?.achievements){
+		if (req.session.user?.achievements) {
 			req.session.user.achievements.push(newAchievement);
-		}
-		else{
+		} else {
 			req.session.user!.achievements = [newAchievement];
 		}
 		return res.status(200).send({ message: 'Achievement added' });

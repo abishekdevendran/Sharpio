@@ -30,7 +30,7 @@ export default async function loginController(req: Request, res: Response) {
 		}
 		//set session
 		req.session.user = user;
-		console.log("Login: user: ",req.session.user);
+		console.log('Login: user: ', req.session.user);
 		return res.status(200).json({ message: 'Login successful' });
 	} catch (err) {
 		return res.status(500).json({ message: 'Internal server error' });

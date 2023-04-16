@@ -60,7 +60,11 @@ const UserStats = () => {
 							<div className="flex flex-row items-center gap-2">
 								<div className="text-xl font-bold">{user.username}</div>
 								<div className="text-md font-medium">{user.email}</div>
-                <div className="text-md font-medium">{user.achievements.length===0?"No Progress": `${((user.achievements.length)/ACHCOUNT)*100}%`}</div>
+								<div className="text-md font-medium">
+									{user.achievements.length === 0
+										? 'No Progress'
+										: `${(user.achievements.length / ACHCOUNT) * 100}%`}
+								</div>
 							</div>
 						</div>
 					);

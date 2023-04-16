@@ -93,7 +93,10 @@ const Navbar = () => {
 					)}
 				</div>
 				{user && (
-					<div className="dropdown dropdown-end ml-4 hover:scale-105" ref={themeMenu}>
+					<div
+						className="dropdown dropdown-end ml-4 hover:scale-105"
+						ref={themeMenu}
+					>
 						<div
 							tabIndex={0}
 							className="btn btn-ghost btn-circle avatar select-none"
@@ -110,7 +113,12 @@ const Navbar = () => {
 							}}
 						>
 							<div className="w-10 rounded-full">
-								<Image src="/defaultAvatar.jpg" alt="avatar" fill className='rounded-full'/>
+								<Image
+									src="/defaultAvatar.jpg"
+									alt="avatar"
+									fill
+									className="rounded-full"
+								/>
 							</div>
 						</div>
 						<ul

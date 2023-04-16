@@ -56,20 +56,24 @@
 							}
 						}
 					},
-					"keep waiting":{
+					"keep waiting": {
 						"levelDescription": "A ferryman comes around. What do you do?",
 						"possibleAnswers": ["Do Nothing", "Get on"],
 						"do nothing": {
 							"levelDescription": "Your introverted being dies alone waiting for all the right oppurtunites just to let them all slip. No amount of heavenly interference or sheer dumb luck could help you. You do nothing at all and live. Your life is a testament to your failures.",
-							"end":false,
+							"end": false,
 							"achievement": "Eat 5 star, ..."
 						},
 						"get on": {
 							"levelDescription": "Now What?",
-							"possibleAnswers": ["Go with the flow", "Ask to get off at Coimbatore", "Rob the ferryman"],
+							"possibleAnswers": [
+								"Go with the flow",
+								"Ask to get off at Coimbatore",
+								"Rob the ferryman"
+							],
 							"go with the flow": {
 								"levelDescription": "You enjoy the ride. Weee. Wait, what.",
-								"end":false,
+								"end": false,
 								"achievement": "Weeeee"
 							},
 							"ask to get off at coimbatore": {
@@ -77,7 +81,7 @@
 								"end": false,
 								"achievement": "Oh, okay.👍"
 							},
-							"rob the ferryman":[
+							"rob the ferryman": [
 								{
 									"levelDescription": "You beat up the old ferryman to find basically nothing on his person. With no experience manning a boat, the current violently sweeps you to your impending inevitable death.",
 									"end": false,
@@ -200,18 +204,18 @@
 						"end": false,
 						"achievement": "Agony Nullified"
 					},
-					"nothing at all":{
+					"nothing at all": {
 						"levelDescription": "You realize it is harder to not hink than think. It is even harder to not think about not thinking than to think. You realize the irony of life, go home a little wiser, sought out the company of loved ones and live a contentful life.",
 						"end": true,
 						"achievement": "To be or not to be"
 					}
 				},
-				"fight whatever moves":{
+				"fight whatever moves": {
 					"levelDescription": "It's way too cold. The bears are hibernating. The wolves are resting. Your bloodlust exhausts you, and you die of a cardiac arrest.",
 					"end": false,
 					"achievement": "No chill pills for me"
 				},
-				"dig for gold":[
+				"dig for gold": [
 					{
 						"levelDescription": "Would you look at that, you did find gold afterall. Why does the helmet matter you ask? It doesn't. This ain't a complex cinematic universe for everything to come together for a grand reveal. Get home with the gold man, less questions, more digging.",
 						"end": true,

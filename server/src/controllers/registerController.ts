@@ -12,19 +12,19 @@ export default async function registerController(req: Request, res: Response) {
 	).toString(CryptoJS.enc.Utf8);
 	try {
 		let user = await prisma.user.findUnique({
-      where: {
-        username: username,
-      },
-    });
+			where: {
+				username: username,
+			},
+		});
 		if (user) {
 			//user already exists
 			return res.status(409).json({ message: 'Username is taken' });
 		}
 		user = await prisma.user.findUnique({
-      where: {
-        email: email,
-      },
-    });
+			where: {
+				email: email,
+			},
+		});
 		if (user) {
 			//user already exists
 			return res.status(409).json({ message: 'User already exists' });
@@ -35,12 +35,12 @@ export default async function registerController(req: Request, res: Response) {
 		);
 		//create user
 		const newUser = await prisma.user.create({
-      data: {
-        username: username,
-        password: hashedPassword,
-        email: email,
-      },
-    });
+			data: {
+				username: username,
+				password: hashedPassword,
+				email: email,
+			},
+		});
 		//set session
 		req.session.user = newUser;
 		return res.status(201).json({ message: 'User created' });

@@ -1,5 +1,5 @@
-import TUser from "./user";
+import TUser from './user';
 
 export default class types {
-  static user: TUser;
+	static user: TUser;
 }

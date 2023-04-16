@@ -154,7 +154,7 @@ const GameBoard = ({
 					</div>
 				</form>
 			</div>
-			<div className='buttonsDiv absolute bottom-8 left-0 right-0 flex items-center justify-center'>
+			<div className="buttonsDiv absolute bottom-8 left-0 right-0 flex items-center justify-center">
 				{!interactable && !hasEnded && (
 					<button
 						className="btn btn-primary mt-8"
